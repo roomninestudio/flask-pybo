@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from markdown.extensions.extra import extensions
@@ -17,6 +17,9 @@ naming_convention = {
 
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 migrate = Migrate()
+
+def page_not_foound(e):
+    return render_template('404.html'), 400
 
 def create_app():
     app = Flask(__name__)
@@ -44,7 +47,14 @@ def create_app():
 
     # Markdown(app, extensions['nl2br','fenced_code'])
 
+    # Error Page
+    app.register_error_handler(404, page_not_foound())
+
     return app
+
+
+
+
 
 
 
