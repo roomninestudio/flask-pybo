@@ -48,7 +48,7 @@ def create_app():
     # Markdown(app, extensions['nl2br','fenced_code'])
 
     # Error Page
-    app.register_error_handler(404, page_not_foound())
+    app.register_error_handler(404, page_not_foound)
 
     return app
 
