@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <title>Hello, pybo!</title>
+</head>
+<body>
+<!-- Navigation Bar Start -->
+{% include "navbar.html" %}
+<!-- Navigation Bar End -->
+<!-- Base Template Start -->
+{% block content %}
+{% endblock %}
+<!-- Base Template End -->
+<!-- Bootstrap JS Start -->
+<script src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
+<!-- Bootstrap JS End -->
+<!-- Javascript Start -->
+{% block script %}
+<script type="text/javascript">
+    const delete_elements = document.getElementsByClassName("delete");
+    Array.from(delete_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+    const recommend_elements = document.getElementsByClassName("recommend");
+    Array.from(recommend_elements).forEach(function(element) {
+        element.addEventListener('click',function() {
+            if(confirm("정말로 추천하시겠습니까?")) {
+                location.href = this.dataset.uri;
+            };
+        });
+    });
+</script>
+{% endblock %}
+<!-- Javascript End -->
+</body>
+</html>
